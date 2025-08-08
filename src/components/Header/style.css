@@ -1,0 +1,28 @@
+/* Header Container */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto; /* center the header */
+  width: 100%;
+}
+
+/* Logo */
+.logo {
+  max-height: 60px;
+  width: auto;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+   
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  
+}
