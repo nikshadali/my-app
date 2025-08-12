@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+/* Global reset */
+:root {
+  --primary-color: #495E57;
+  --primary-color-dark: #384d46;
+  --secondary-color: #F4CE14;
+  --gray-color: #EDEFEE;
+  --light-oriange-color: #EE9972;
+  --light-oriange2-color: #FBDABB;
+  --text-color: #333;
+  --border-radius: 10px;
+  --heading-font: 'Poppins', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Body base style */
+body {
+   font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: #333;
+  line-height: 1.6;
+  background-color: #fff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #111;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+/* Paragraph */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn{
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+}
+.booking-page {
+  padding: 2rem 1rem;
+}
+
+.booking-page h1 {
+  margin-bottom: 0.5rem;
+}
+
+.booking-page p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.form-container{
+  width:100%;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
 }
