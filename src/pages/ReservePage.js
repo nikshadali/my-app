@@ -4,12 +4,12 @@ import React, { useReducer } from 'react';
 import BookingForm from '../components/BookingForm/BookingForm';
 import { fetchAPI } from '../api';
 
-const initializeTimes = () => {
+export const initializeTimes = () => {
   const today = new Date();
   return fetchAPI(today);
 };
 
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
   if (action.type === "UPDATE_TIMES") {
     return fetchAPI(new Date(action.date));
   }
