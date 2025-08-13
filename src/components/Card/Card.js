@@ -11,7 +11,7 @@ const Card = ({ image, title, price, description }) => {
           <span className="price">${price}</span>
         </div>
         <p>{description}</p>
-        <button className="card-btn">
+        <button aria-label="On Click" className="card-btn">
           Order a delivery <MdOutlineDeliveryDining size={20} />
         </button>
       </div>

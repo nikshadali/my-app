@@ -12,10 +12,11 @@ const HeroSection = () => {
           <h1>Little Lemon</h1>
           <h3>Chicago</h3>
           <p>
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua
+            Little Lemon invites you to experience the perfect blend of fresh flavors, warm hospitality, and a touch of Mediterranean charm right here in the heart of Chicago. Our carefully crafted menu celebrates seasonal ingredients and time-honored recipes, bringing you dishes that are both comforting and unforgettable. Whether you’re joining us for a casual lunch, a romantic dinner, or a family celebration, Little Lemon promises an atmosphere as vibrant and inviting as the city we call home.
+
+
           </p>
-          <button className="btn-primary">Reserve a Table</button>
+          <button aria-label="On Click" className="btn-primary">Reserve a Table</button>
         </div>
 
         {/* Right Column */}

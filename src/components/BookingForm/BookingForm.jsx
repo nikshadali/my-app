@@ -4,7 +4,7 @@ import './bookingForm.css';
 import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({ availableTimes, dispatch }) => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     date: '',
@@ -12,6 +12,8 @@ const navigate = useNavigate();
     guests: 1,
     occasion: 'Birthday',
   });
+
+  const [errors, setErrors] = useState({}); // <-- NEW state for validation errors
 
   // Handle form changes
   const handleChange = (e) => {
@@ -25,45 +27,73 @@ const navigate = useNavigate();
     if (name === 'date') {
       dispatch({ type: 'UPDATE_TIMES', date: value });
     }
+
+    // Clear error for that field when user changes it
+    setErrors(prev => ({ ...prev, [name]: "" }));
+  };
+
+  // Validation function
+  const validate = () => {
+    let newErrors = {};
+
+    if (!formData.date) {
+      newErrors.date = "Please select a date.";
+    }
+
+    if (!formData.time) {
+      newErrors.time = "Please select a time.";
+    }
+
+    if (formData.guests < 1 || formData.guests > 10) {
+      newErrors.guests = "Guests must be between 1 and 10.";
+    }
+
+    if (!formData.occasion) {
+      newErrors.occasion = "Please select an occasion.";
+    }
+
+    return newErrors;
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Get existing bookings from localStorage or empty array
-  const existingBookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    // Run validation
+    const formErrors = validate();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
 
-  // Check for conflict
-  const conflict = existingBookings.some(
-    booking => booking.date === formData.date && booking.time === formData.time
-  );
+    // Check for booking conflict
+    const existingBookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    const conflict = existingBookings.some(
+      booking => booking.date === formData.date && booking.time === formData.time
+    );
 
-  if (conflict) {
-    alert("This time slot is already booked. Please choose another time.");
-    return;
-  }
+    if (conflict) {
+      setErrors({ time: "This time slot is already booked. Please choose another time." });
+      return;
+    }
 
-  // If no conflict, submit to API
-  const success = submitAPI(formData);
+    // Submit to API
+    const success = submitAPI(formData);
 
-  if (success) {
-    // Save to localStorage
-    localStorage.setItem('bookings', JSON.stringify([...existingBookings, formData]));
-
-    navigate('/confirmed', { state: formData });
-  } else {
-    alert("Something went wrong. Please try again.");
-  }
-};
-
+    if (success) {
+      localStorage.setItem('bookings', JSON.stringify([...existingBookings, formData]));
+      navigate('/confirmed', { state: formData });
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   return (
-   
-     <form
+    <form
       className="booking-form"
-      style={{ display: 'grid',  gap: '20px' }}
+      style={{ display: 'grid', gap: '20px' }}
       onSubmit={handleSubmit}
     >
+      {/* Date */}
       <label htmlFor="res-date">Choose date</label>
       <input
         type="date"
@@ -71,23 +101,25 @@ const navigate = useNavigate();
         name="date"
         value={formData.date}
         onChange={handleChange}
-        required
       />
+      {errors.date && <p className="error">{errors.date}</p>}
 
+      {/* Time */}
       <label htmlFor="res-time">Choose time</label>
       <select
         id="res-time"
         name="time"
         value={formData.time}
         onChange={handleChange}
-        required
       >
         <option value="">Select a time</option>
         {availableTimes.map((time) => (
           <option key={time} value={time}>{time}</option>
         ))}
       </select>
+      {errors.time && <p className="error">{errors.time}</p>}
 
+      {/* Guests */}
       <label htmlFor="guests">Number of guests</label>
       <input
         type="number"
@@ -97,9 +129,10 @@ const navigate = useNavigate();
         onChange={handleChange}
         min="1"
         max="10"
-        required
       />
+      {errors.guests && <p className="error">{errors.guests}</p>}
 
+      {/* Occasion */}
       <label htmlFor="occasion">Occasion</label>
       <select
         id="occasion"
@@ -107,11 +140,19 @@ const navigate = useNavigate();
         value={formData.occasion}
         onChange={handleChange}
       >
+        <option value="">Select occasion</option>
         <option>Birthday</option>
         <option>Anniversary</option>
       </select>
+      {errors.occasion && <p className="error">{errors.occasion}</p>}
 
-      <input className="form-btn" type="submit" value="Make Your Reservation" />
+      <input
+       className="form-btn"
+        type="submit" 
+       aria-label="Submit form"
+        value="Make Your Reservation"
+        disabled={Object.keys(validate()).length > 0}
+         />
     </form>
   );
 };

@@ -35,7 +35,7 @@ const Specials = ({ specials = [] }) => {
       <div className="container specials-container">
         <div className="specials-title">
           <h2>This Week's Specials</h2>
-          <button className="specials-btn">Online Menu</button>
+          <button aria-label="On Click" className="specials-btn">Online Menu</button>
         </div>
 
         <ul className="card-container">

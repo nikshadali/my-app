@@ -29,3 +29,9 @@
   cursor: pointer;
   transition: background 0.3s;
 }
+.error {
+  color: red !important;
+  font-size: 0.85rem;
+  margin-top: -10px;
+  margin-bottom: 0;
+}
