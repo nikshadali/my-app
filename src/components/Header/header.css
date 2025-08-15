@@ -4,6 +4,7 @@
   color: var(--text-color);
   position: relative;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Flex container */
@@ -41,15 +42,27 @@ nav a::after{
   width: 0;
   height: 2px;
     
-  background: var(--primary-color);
+  background: #1fb63c;
   display: block;
   margin: auto;
   transition: 0.5s;
   margin-top: 5px;
 
 }
+nav a:hover{
+  color: #1fb63c;
+}
 nav a:hover::after{
   width: 100%;
+}
+.nav a.active-link {
+  color: #1fb63c; /* active link color */
+  font-weight: bold;
+}
+
+.nav a.active-link::after {
+  width: 100%; /* underline visible by default */
+  background: #1fb63c; /* match active color */
 }
 
 /* Menu button hidden on desktop */
@@ -117,4 +130,23 @@ nav a:hover::after{
     background: rgba(0, 0, 0, 0.4);
     z-index: 999;
   }
+}
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #ff3b3b;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  line-height: 1;
+  min-width: 18px;
+  text-align: center;
 }

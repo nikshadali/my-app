@@ -81,5 +81,12 @@
 
   .about-image img {
     max-width: 100%;
+    width: 380px;
+    top:0;
+    left:0;
+    position: relative;
+  }
+  .about-image-02{
+    display: none;
   }
 }

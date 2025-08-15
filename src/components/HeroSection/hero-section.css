@@ -57,9 +57,20 @@
   max-width: 300px;
   border-radius: 12px;
 }
+/* Disable scrolling when nav is open */
+.body-no-scroll {
+  overflow: hidden;          /* disable vertical scroll */
+  position: fixed;           /* lock scroll position */
+  width: 100%;               /* prevent horizontal scroll */
+  top: 0;                    /* maintain scroll position */
+}
+
 
 /* Responsive design */
 @media (max-width: 992px) {
+  .hero{
+    max-height:1450px;
+  }
   .hero-content {
     flex-direction: column;
     text-align: center;

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./header.css";
+import { Link, NavLink } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../../contexts/cartContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {cart} = useCart()
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   // Navigation items array
   const navItems = [
@@ -10,12 +15,42 @@ const Header = () => {
     { label: "About", path: "/about" },
     { label: "Menu", path: "/menu" },
     { label: "Reservation", path: "/reservation" },
-    { label: "Order Online", path: "/order-online" },
+    {
+      label: (
+        <div className="cart-icon-wrapper">
+          <FaShoppingCart size={20} />
+          {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+        </div>
+      ),
+      path: "/cart",
+    },
     { label: "Login", path: "/login" },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
 const closeMenu = () => setIsOpen(false);
+
+ // Disable scroll when nav is open
+ useEffect(() => {
+  let scrollY = 0;
+  if (isOpen) {
+    scrollY = window.scrollY;
+    document.body.style.top = `-${scrollY}px`;
+    document.body.classList.add("body-no-scroll");
+  } else {
+    document.body.classList.remove("body-no-scroll");
+    const top = document.body.style.top;
+    window.scrollTo(0, parseInt(top || "0") * -1);
+    document.body.style.top = "";
+  }
+
+  return () => {
+    document.body.classList.remove("body-no-scroll");
+    document.body.style.top = "";
+  };
+}, [isOpen]);
+
+
   return (
     <header className="header">
       <div className="container header-content">
@@ -24,18 +59,22 @@ const closeMenu = () => setIsOpen(false);
 
         {/* Navigation */}
         <nav className={`nav ${isOpen ? "nav-open" : ""}`}>
-          <button className="close-btn" onClick={closeMenu}>
+          <button aria-label="On Click" className="close-btn" onClick={closeMenu}>
             ✕
           </button>
           {navItems.map((item, index) => (
-            <a key={index} href={item.path}>
+            <NavLink 
+            key={index} 
+            to={item.path}
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="menu-btn" onClick={toggleMenu}>
+        <button aria-label="On Click" className="menu-btn" onClick={toggleMenu}>
           ☰
         </button>
       </div>

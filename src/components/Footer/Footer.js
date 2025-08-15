@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -29,7 +30,7 @@ const Footer = () => {
           <ul>
             {navItems.map((item, index) => (
               <li key={index}>
-                <a href={item.path}>{item.label}</a>
+                <Link to={item.path}>{item.label}</Link>
               </li>
             ))}
           </ul>

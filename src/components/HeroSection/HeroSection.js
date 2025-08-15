@@ -12,7 +12,7 @@ const HeroSection = () => {
           <h1>Little Lemon</h1>
           <h3>Chicago</h3>
           <p>
-            Little Lemon invites you to experience the perfect blend of fresh flavors, warm hospitality, and a touch of Mediterranean charm right here in the heart of Chicago. Our carefully crafted menu celebrates seasonal ingredients and time-honored recipes, bringing you dishes that are both comforting and unforgettable. Whether you’re joining us for a casual lunch, a romantic dinner, or a family celebration, Little Lemon promises an atmosphere as vibrant and inviting as the city we call home.
+           Little Lemon blends fresh flavors, warm hospitality, and Mediterranean charm in the heart of Chicago. Our seasonal menu, inspired by time-honored recipes, offers dishes that are both comforting and unforgettable. From casual lunches to special celebrations, we create an atmosphere as vibrant and inviting as the city we call home.
 
 
           </p>

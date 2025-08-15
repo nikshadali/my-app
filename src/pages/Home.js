@@ -10,7 +10,7 @@ const Home = () => {
       <HeroSection />
       <Specials/>
       <Testimonials/>
-      <About/>
+      <About imgUrl="/images/restaurant.jpg"/>
     </>
   )
 }
