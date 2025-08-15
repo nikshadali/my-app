@@ -28,5 +28,5 @@ export const fetchAPI = function (date) {
 
 // Submit booking form data
 export const submitAPI = function (formData) {
-  return true; // Always returns success in mock
+  return true; 
 };

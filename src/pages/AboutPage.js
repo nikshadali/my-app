@@ -3,7 +3,7 @@ import About from '../components/About/About'
 
 const AboutPage = () => {
   const imgPath = "/images/Mario.jpg";
-  console.log("Passing to About:", imgPath); // ✅ Should log
+  console.log("Passing to About:", imgPath); 
 
   return <About imgUrl={imgPath} />;
   

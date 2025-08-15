@@ -9,7 +9,9 @@ const MenuPage = () => {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    // API or filtering logic can be added here
+   if (query === "") {
+      setSearchQuery("");
+    }
   };
 
   const filteredDishes = dishes.filter((dish) =>

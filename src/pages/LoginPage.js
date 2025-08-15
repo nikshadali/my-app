@@ -28,7 +28,7 @@ const LoginPage = () => {
       return;
     }
 
-    // TODO: Replace with your actual login logic (API call)
+   
     navigate("/");
 
     setError("");
