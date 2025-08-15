@@ -186,12 +186,21 @@ p {
   text-align: center;
   margin-top: 1rem;
 }
-
+.menu-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem
+}
 
 @media screen and (max-width: 768px) {
  .login-container {
     align-items: flex-start;
     padding-top: 2rem;
+    
   }
-  
+  .menu-header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
